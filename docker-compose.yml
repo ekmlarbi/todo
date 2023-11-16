@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+
+  postgres:
+    image: 'postgres:9.5'
+    env_file:
+      - '.env'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+    ports:
+      - '5432:5432'
+
+  todo:
+    build: .
+    command: >
+      gunicorn -c "python:config.gunicorn" --reload "todo.app:create_app()"
+    env_file:
+      - '.env'
+    volumes:
+      - '.:/todo'
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+
+volumes:
+  postgres:
+  redis:

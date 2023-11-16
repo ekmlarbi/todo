@@ -1,0 +1,59 @@
+{% extends 'layouts/app.html' %}
+{% import 'macros/form.html' as f with context %}
+
+{% block title %}Just track your items todo here{% endblock %}
+{% block meta_description %}Add all your todo items here to keep{% endblock %}
+
+{% block body %}
+    <div class="container sm-margin-top">
+        <div class="row text-center lg-margin-bottom">
+            <h1>Feeling Overwhelmed?</h1>
+            <h3 class="text-muted">
+                Add all your todo items here to keep
+            </h3>
+        </div>
+        <div class="row sm-margin-bottom">
+            <div class="col-md-8 col-md-offset-2 well">
+                {% call f.form_tag(endpoint='todo.home', method='post') %}
+                    <legend>Items to be completed - todos</legend>
+
+                    {% call f.form_group(form.name, css_class='margin-bottom',
+                             placeholder='Todo Name / Title') %}
+                    {% endcall %}
+
+                    <button type="submit" class="btn btn-primary">Save Todo</button>
+                {% endcall %}
+            </div>
+        </div>
+        <div class="row">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Task Name</th>
+                    <th>Status</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for todo in todo_list %}
+                    <tr>
+                        <td>{{ todo.id }}</td>
+                        <td>{{ todo.name }}</td>
+                        {% if todo.status == False %}
+                            <td>Not Done</td>
+                        {% else %}
+                            <td>Done</td>
+                        {% endif %}
+                        <td><a href="/todo/update/{{ todo.id }}">Update</a></td>
+                        <td><a href="/todo/delete/{{ todo.id }}">Delete</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+

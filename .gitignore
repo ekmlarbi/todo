@@ -1,0 +1,7 @@
+.idea
+__pycache__
+todo.iml
+
+.coverage
+.pytest_cache
+__pycache__

@@ -1,0 +1,36 @@
+# micro framework
+Flask==2.0.0
+
+# application server impl.
+Werkzeug==2.0.0
+gunicorn
+
+# testing and static analysis.
+pytest
+pytest-cov
+flake8
+
+# cli
+Click
+
+# data and workers.
+redis
+celery
+psycopg2
+Flask-SQLAlchemy
+SQLAlchemy==1.4
+
+# forms.
+Flask-WTF
+WTForms-Components
+
+# Extensions.
+flask-debugtoolbar
+Flask-Mail
+Flask-Login==0.3.2
+
+
+#lib
+itsdangerous==2.0.1
+pytz
+WTForms-Alchemy
